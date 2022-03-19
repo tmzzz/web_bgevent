@@ -22,20 +22,17 @@ $(function(){
 // 获取用户信息
 function getUserInfo(){
   $.ajax({
-    url: '/my/userinfo',
     method: 'GET',
-    
+    url: '/my/userinfo',
     // headers:请求头配置对象 
     // 在baseAPI.js中为、/my开头的统一配置
     success:function(res){
       if(res.status !== 0){
         return layer.msg('获取用户信息失败！')
       }
-
       //调用 renderAvater 渲染用户的头像
       renderAvater(res.data)
-    },
-    
+    },    
   })
 }
 
@@ -43,7 +40,7 @@ function getUserInfo(){
 function renderAvater(user){
   // 1.获取用户名称
   var name = user.nickname || user.username
-  $('#welcome').html('欢迎&nbsp;&nbsp;',name)
+  $('#welcome').html('欢迎&nbsp;&nbsp;'+name)
   // 2.判断用户是否有头像,按需渲染
   if(user.user_pic !== null){
     // 3.渲染图片头像
